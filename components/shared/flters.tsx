@@ -5,7 +5,7 @@ import { Input } from "../ui/input";
 import { RangeSlider } from "../ui/range-slider";
 import { CheckboxFiltersGroup } from "./checkbox-filters-group";
 import { Title } from "./title";
-import React from "react";
+import React, { Suspense } from "react";
 import { useSet } from "react-use";
 import * as qs from 'qs'
 import { useRouter, useSearchParams } from "next/navigation";
@@ -75,7 +75,8 @@ export const Filters:React.FC<Props>=({className})=>{
         });
     }, [prices,pizzaTypes,sizes, selectedIngredients, router])
     return(
-        <div className={className}>
+        <Suspense>
+              <div className={className}>
             <Title text="Filters" size="sm" className="mb-5 font-bold"/>
 
             {/* <div className="flex flex-col gap-4">
@@ -150,5 +151,7 @@ export const Filters:React.FC<Props>=({className})=>{
                 selectedIds={selectedIngredients}
             />
         </div>
+        </Suspense>
+      
     );
 };
